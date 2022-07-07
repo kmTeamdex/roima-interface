@@ -1,0 +1,45 @@
+name: Automatic Release
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  create_release:
+    name: Automatic Release
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    environment: release
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          registry-url: https://registry.npmjs.org
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build distribution
+        env:
+          GTAG_ID: ${{ secrets.GTAG_ID }}
+          REACT_APP_ACHEMY_KEY: ${{ secrets.REACT_APP_ACHEMY_KEY }}
+          REACT_APP_INFURA_KEY: ${{ secrets.REACT_APP_INFURA_KEY }}
+          ROOT_URL: ${{ secrets.ROOT_URL }}
+        run: yarn build
+
+      - name: Install SSH
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          known_hosts: "empty_value"
+
+      - name: Add known_hosts
+        run: ssh-keyscan -H ${{ secrets.REMOTE_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Deploy with rsync
+        run: rsync -avz ./dist/ ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.REMOTE_PATH }}
