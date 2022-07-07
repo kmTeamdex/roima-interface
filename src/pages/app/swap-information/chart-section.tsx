@@ -1,24 +1,18 @@
-import { Currency } from '@manekiswap/sdk';
+import { Currency } from '@roimaswap/sdk';
 import dayjs from 'dayjs';
 import last from 'lodash/last';
 import { Dispatch, SetStateAction, useEffect, useMemo, useState } from 'react';
 import { Button, Flex, FlexProps, Grid, Text } from 'theme-ui';
-import { FormatResult, AsObject  } from '../../../coingecko/formatresult';
+import { FormatResult, AsObject } from '../../../coingecko/formatresult';
 import useMetrics from '../../../hooks/grpc/useMetric';
 import usePrevious from '../../../hooks/usePrevious';
 import { GetMetricResponse, GetMetricResult } from '../../../services/proto/CryptoInfo_pb';
 import { capitalizeFirstLetter } from '../../../utils/strings';
 import { NewChart } from './newchart';
 import getMetric, { MetricId } from './metrics';
-import { PERIODS } from '../../../constants'
-import { Btn } from "../../../components/graph-comp/Button";
-import {
-  CONTAINER_PADDING,
-  graphHeight,
-  graphWidth,
-  GRAPH_MARGIN,
-} from "../../../constants/dimension";
-
+import { PERIODS } from '../../../constants';
+import { Btn } from '../../../components/graph-comp/Button';
+import { CONTAINER_PADDING, graphHeight, graphWidth, GRAPH_MARGIN } from '../../../constants/dimension';
 
 interface Props extends Omit<FlexProps, 'sx'> {
   title: string;
@@ -58,11 +52,9 @@ export default function ChartSection(props: Props) {
   const values0 = useMetrics(metrics, from?.wrapped);
   const values1 = useMetrics(metrics, to?.wrapped);
 
-
   const [period, setPeriod] = useState(PERIODS[0]);
   const [selectedToken, setSelectedToken] = useState<0 | 1>(0);
   //  const [period, setPeriod] = useState(PERIODS[0]);
-
 
   const score0 = useMemo(() => {
     const sum = Object.keys(values0).reduce((memo, metric) => {
@@ -140,15 +132,11 @@ export default function ChartSection(props: Props) {
           />
         </Grid>
         <Flex sx={{ flexDirection: 'row' }}>
-       {PERIODS.map((option) => (
-          <Btn
-            key={option.title}
-            onClick={() => setPeriod(option)}
-            disabled={period.value === option.value}
-          >
-            {option.title}
-          </Btn>
-       ))}
+          {PERIODS.map((option) => (
+            <Btn key={option.title} onClick={() => setPeriod(option)} disabled={period.value === option.value}>
+              {option.title}
+            </Btn>
+          ))}
         </Flex>
         <NewChart
           token={selectedToken === 0 ? from?.wrapped : to?.wrapped}

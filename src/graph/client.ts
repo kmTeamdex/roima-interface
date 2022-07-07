@@ -22,7 +22,7 @@ export default function getClients(chainId?: number): {
   } else if (chainId === SupportedChainId.SMART_CHAIN) {
     return {
       blockClient: new ApolloClient({
-        uri: 'https://api.thegraph.com/subgraphs/name/blockartist/cheeseblock',
+        uri: 'https://api.thegraph.com/subgraphs/name/blocklytics/ethereum-blocks',
         cache: new InMemoryCache(),
         queryDeduplication: true,
       }),
@@ -33,6 +33,5 @@ export default function getClients(chainId?: number): {
       }),
     };
   }
-
   return {};
 }

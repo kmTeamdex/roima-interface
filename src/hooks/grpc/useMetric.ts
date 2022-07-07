@@ -1,4 +1,4 @@
-import { Token } from '@manekiswap/sdk';
+import { Token } from '@roimaswap/sdk';
 import { useEffect, useState } from 'react';
 import { AsObject, FormatResult, coinMetrics } from '../../coingecko/formatresult';
 import { GetMetricRequest, GetMetricResponse } from '../../services/proto/CryptoInfo_pb';
@@ -17,8 +17,8 @@ export default function useMetrics(metrics: string[], token?: Token) {
       request.setKeyword(keyword);
       request.setMetric(m);
       try {
-        const response = await coinMetrics(m, token)
-        setMetric((v) => ({ ...v, [m]: response}));
+        const response = await coinMetrics(m, token);
+        setMetric((v) => ({ ...v, [m]: response }));
       } catch (error) {
         console.log(error);
       }

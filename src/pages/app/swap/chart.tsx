@@ -1,5 +1,7 @@
+import { Token } from '@roimaswap/sdk';
 import { format, fromUnixTime } from 'date-fns';
 import { Dictionary, mapKeys, mapValues, maxBy, minBy, pickBy, toPairs } from 'lodash';
+import { useState } from 'react';
 import { coingeckoService } from 'src/coingecko/coingecko.service.js';
 /**
  *
@@ -64,4 +66,20 @@ type Props = {
   isModal?: boolean;
   onCloseModal?: () => void;
   toggleModal: () => void;
+};
+
+const priceData = {
+  value: 0,
+};
+
+export const NewChart = (props: { tokenIn?: Token; tokenOut?: Token }) => {
+  const { tokenIn, tokenOut } = props;
+  const [period, setPeriod] = useState(chartTimespans[0]);
+  const dataMin = () => {
+    return (minBy([], (v) => v[1]) || [])[1] || 0;
+  };
+
+  const dataMax = () => {
+    return (maxBy([], (v) => v[1]) || [])[1] || 0;
+  };
 };

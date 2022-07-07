@@ -10,7 +10,6 @@ import { getPercentChange } from '../utils/percents';
 import { useClients } from './useClients';
 
 /**
- * 
  * Gets the current price  of ETH, 24 hour price, and % change between them
  */
 export default function useEthPrice() {
@@ -28,12 +27,12 @@ export default function useEthPrice() {
       const utcCurrentTime = dayjs();
       const utcOneDayBack = utcCurrentTime.subtract(1, 'day').startOf('minute').unix();
       const oneDayBlock = await getBlockFromTimestamp(utcOneDayBack, blockClient!);
-      console.log('oneDayBlock', oneDayBlock);
+
       const { data: result, error } = await dataClient!.query({
         query: ETH_PRICE(),
         fetchPolicy: 'cache-first',
       });
-       
+
       const { data: resultOneDay, error: errorOneDay } = await dataClient!.query({
         query: ETH_PRICE(oneDayBlock),
         fetchPolicy: 'cache-first',

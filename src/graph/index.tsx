@@ -69,7 +69,6 @@ const GraphProvider = ({ children }: PropsWithChildren<{}>) => {
 function useDispatch(): Dispatch<AnyAction> {
   const { dispatch } = useContext(GraphCtx);
   return dispatch;
-  
 }
 
 function useSelector<T>(selector: (ctx: GraphContext) => T): T {

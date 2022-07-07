@@ -756,7 +756,6 @@ export const TOKENS_HISTORICAL_BULK = (tokens: Address[], blockNumber?: number) 
   }
   `;
   return gql(queryString);
-  
 };
 
 export const TOKEN_DATA = (tokenAddress: Address, blockNumber?: number) => {
