@@ -4,4 +4,3 @@
 # /env/.env
 /env/.env.mock
 /src/abis/types
-/src/functions
