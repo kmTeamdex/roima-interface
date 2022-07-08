@@ -9,7 +9,7 @@
     "postinstall": "patch-package",
     "clean": "rimraf dist",
     "start": "webpack serve --config=webpack/dev.ts",
-    "build": "yarn compile-external-abi-types && NODE_ENV=production webpack --config=webpack/prod.ts",
+    "build": "yarn compile-external-abi-types && webpack --config=webpack/prod.ts",
     "analyze": "NODE_ENV=production webpack --config=webpack/analyze.ts",
     "compile-external-abi-types": "typechain --target ethers-v5 --out-dir src/abis/types './src/abis/**/*.json'",
     "prestart": "yarn compile-external-abi-types",
