@@ -44,7 +44,7 @@ export const SUPPORTED_WALLETS: { [key: string]: WalletInfo } = {
     name: 'Open in Coinbase Wallet',
     iconName: 'coinbase.svg',
     description: 'Open in Coinbase Wallet app.',
-    href: 'https://go.cb-w.com/UHOU3UyM5hb',
+    href: process.env.COINBASE_URL,
     mobile: true,
     mobileOnly: true,
   },
