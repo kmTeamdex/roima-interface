@@ -1645,10 +1645,10 @@
     redux-thunk "^2.4.1"
     reselect "^4.1.5"
 
-"@roimaswap/sdk@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@roimaswap/sdk/-/sdk-2.0.0.tgz#44c2779b7b8a9dba112f7e42943b204b3a50facf"
-  integrity sha512-21X0H0VD8dI7lQmekZxBtwCKhar3irfggNo6ri2NdtQkLdQZ1AePv6tSPFuHV4o+Dyodr2yShJfMiOBqIh7M/w==
+"@roimaswap/sdk@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@roimaswap/sdk/-/sdk-2.1.0.tgz#6979e2ff81d2605871c69cb05db9ae3cc9266881"
+  integrity sha512-N6r0a4RoyYzViiEGtqc3ubahTru8eKhLrh8zOBE+H9pho1EdwvqMhocysraifRwborZatag83Weu3JPU9/TfrA==
   dependencies:
     big.js "6.1.1"
     decimal.js-light "2.5.1"

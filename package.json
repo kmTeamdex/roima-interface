@@ -26,7 +26,7 @@
     "@mdx-js/react": "1.6.22",
     "@metamask/jazzicon": "2.0.0",
     "@reduxjs/toolkit": "1.7.1",
-    "@roimaswap/sdk": "^2.0.0",
+    "@roimaswap/sdk": "^2.1.0",
     "@theme-ui/color": "0.13.0",
     "@theme-ui/match-media": "0.13.0",
     "@web3-react/core": "6.1.9",
